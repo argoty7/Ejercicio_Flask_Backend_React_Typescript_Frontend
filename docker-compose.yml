@@ -6,19 +6,25 @@ services:
     container_name: flask-server
     ports:
       - "5000:5000"  # Mapea el puerto 5000 del contenedor al puerto 5000 del host
-    networks:
-      - mi-red
+    build:
+      context: flask-server
+      dockerfile: Dockerfile
+    #networks:
+    #  - mi-red
 #    depends_on:
 #      - database  
 
   # Servicio para la aplicación React (frontend)
   frontend:
-    image: react-client:latest  # Reemplaza con el nombre de tu imagen de la aplicación React
+    image: react-client:latest  # Nombre de la imagen de la aplicación React
     container_name: react-client
     ports:
       - "3000:3000"  # Mapea el puerto 3000 del contenedor al puerto 3000 del host
-    networks:
-      - mi-red
+    build:
+      context: react-client
+      dockerfile: Dockerfile
+    #networks:
+    #  - mi-red
 
-networks:
-  mi-red:
+#networks:
+#  mi-red:
